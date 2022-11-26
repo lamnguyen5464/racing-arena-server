@@ -1,4 +1,4 @@
-package racing.arena.server;
+package racing.arena.server.core;
 
 import racing.arena.server.utils.Logger;
 

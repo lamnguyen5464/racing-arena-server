@@ -1,4 +1,4 @@
-package racing.arena.server;
+package racing.arena.server.core;
 
 import racing.arena.server.utils.Configs;
 import racing.arena.server.utils.Logger;
@@ -46,10 +46,6 @@ public class SocketServer {
 
                 Client client = new Client(bufferedReader, outputStream);
                 this.clientManager.add(client);
-
-                String messageForClient = "Hellu client " + client.getId() + "\n";
-                client.send(messageForClient);
-                client.send(messageForClient);
             }
 
         } catch (Exception e) {
