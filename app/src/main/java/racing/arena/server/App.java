@@ -29,7 +29,7 @@ public class App {
         try {
 
             System.out.println("Start client " + num + "...");
-            String sentence_to_server = "From client " + num;
+            String sentence_to_server = "Hi, I am client: " + num;
 
             Socket clientSocket = new Socket("localhost", Configs.PORT);
 

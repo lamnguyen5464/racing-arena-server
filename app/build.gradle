@@ -29,3 +29,11 @@ application {
     // Define the main class for the application.
     mainClass = 'racing.arena.server.App'
 }
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'racing.arena.server.App'
+        )
+    }
+}
