@@ -1,10 +1,11 @@
-package racing.arena.server.core.handler;
+package racing.arena.server.feature.handler;
 
-import racing.arena.server.core.Client;
+import racing.arena.server.core.Providers;
+import racing.arena.server.feature.client.Client;
 import racing.arena.server.model.ClientJoinRoom;
 import racing.arena.server.model.MessageType;
 import racing.arena.server.model.PayloadWrapper;
-import racing.arena.server.utils.Logger;
+import racing.arena.server.core.utils.Logger;
 
 public class ClientListener implements ClientHandler {
     @Override
@@ -25,9 +26,22 @@ public class ClientListener implements ClientHandler {
         PayloadWrapper payloadWrapper = new PayloadWrapper(rawData);
         String type = payloadWrapper.getType();
         if (type.equals(MessageType.CLIENT_JOIN_ROOM.name())) {
-            ClientJoinRoom clientJoinRoom = new ClientJoinRoom();
-            clientJoinRoom.initFromObject(payloadWrapper.getPayload());
-            Logger.d("[SERVER] " + clientJoinRoom.getUsername() + " is here!");
+            ClientJoinRoom clientJoinRoomData = new ClientJoinRoom();
+            // parse
+            clientJoinRoomData.initFromObject(payloadWrapper.getPayload());
+
+            // set username for client
+            client.setUsername(clientJoinRoomData.getUsername());
+
+            // add client to appropriate room
+            Providers.defaultRoom.addClient(client);
+
+            Logger.d("[SERVER] " + clientJoinRoomData.getUsername() + " is here!");
+            return;
+        }
+
+        if (type.equals(MessageType.CLIENT_ANSWER.name())) {
+            //
             return;
         }
 

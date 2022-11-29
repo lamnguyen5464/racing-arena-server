@@ -1,6 +1,4 @@
-package racing.arena.server.core;
-
-import racing.arena.server.utils.Logger;
+package racing.arena.server.feature.client;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -12,10 +10,20 @@ public class Client {
     private final DataOutputStream dataOutputStream;
     private final String id;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String username = "";
+
     public Client(BufferedReader bufferedReader, DataOutputStream outputStream) {
         this.bufferedReader = bufferedReader;
         this.dataOutputStream = outputStream;
-        this.id = UUID.randomUUID().toString();
+        this.id = "client-id-" + UUID.randomUUID();
 //        Logger.d("[Client] create client with id: " + this.id);
     }
 

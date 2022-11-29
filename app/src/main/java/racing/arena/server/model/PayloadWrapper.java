@@ -2,7 +2,7 @@ package racing.arena.server.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import racing.arena.server.utils.JSONSafeObject;
+import racing.arena.server.core.utils.JSONSafeObject;
 
 public class PayloadWrapper {
     private static String FIELD_TYPE = "type";

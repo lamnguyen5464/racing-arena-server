@@ -1,6 +1,6 @@
 package racing.arena.server.model;
 
-import racing.arena.server.utils.JSONSafeObject;
+import racing.arena.server.core.utils.JSONSafeObject;
 
 public interface BaseMessage {
     String getType();

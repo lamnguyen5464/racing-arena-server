@@ -1,4 +1,6 @@
-package racing.arena.server.core;
+package racing.arena.server.feature.client;
+
+import racing.arena.server.core.Providers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +11,7 @@ public class ClientManager {
 
     private final ExecutorService executorService;
 
-    ClientManager(ExecutorService executorService) {
+    public ClientManager(ExecutorService executorService) {
         this.executorService = executorService;
     }
 

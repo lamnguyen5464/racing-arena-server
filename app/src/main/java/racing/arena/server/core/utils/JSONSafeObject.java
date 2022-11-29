@@ -1,4 +1,4 @@
-package racing.arena.server.utils;
+package racing.arena.server.core.utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

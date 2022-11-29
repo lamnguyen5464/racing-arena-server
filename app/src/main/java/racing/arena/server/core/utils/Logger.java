@@ -1,4 +1,4 @@
-package racing.arena.server.utils;
+package racing.arena.server.core.utils;
 
 public class Logger {
     public static void d(String message) {

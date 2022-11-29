@@ -3,9 +3,7 @@ package racing.arena.server;
 import racing.arena.server.core.Providers;
 import racing.arena.server.model.ClientJoinRoom;
 import racing.arena.server.model.PayloadWrapper;
-import racing.arena.server.model.TestModel;
-import racing.arena.server.utils.Configs;
-import racing.arena.server.utils.Logger;
+import racing.arena.server.core.utils.Logger;
 
 import java.io.BufferedReader;
 import java.io.*;
@@ -31,7 +29,7 @@ public class App {
             System.out.println("Start client " + num + "...");
             String sentence_to_server = "Hi, I am client: " + num;
 
-            Socket clientSocket = new Socket("localhost", Configs.PORT);
+            Socket clientSocket = new Socket("localhost", 5555);
 
             DataOutputStream outToServer =
                     new DataOutputStream(clientSocket.getOutputStream());

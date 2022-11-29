@@ -1,7 +1,9 @@
-package racing.arena.server.core;
+package racing.arena.server.core.server;
 
-import racing.arena.server.utils.Configs;
-import racing.arena.server.utils.Logger;
+import racing.arena.server.feature.client.Client;
+import racing.arena.server.feature.client.ClientManager;
+import racing.arena.server.core.utils.Configs;
+import racing.arena.server.core.utils.Logger;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

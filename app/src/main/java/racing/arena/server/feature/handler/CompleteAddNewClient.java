@@ -1,6 +1,6 @@
-package racing.arena.server.core.handler;
+package racing.arena.server.feature.handler;
 
-import racing.arena.server.core.Client;
+import racing.arena.server.feature.client.Client;
 import racing.arena.server.model.PayloadWrapper;
 import racing.arena.server.model.ServerNewUser;
 
