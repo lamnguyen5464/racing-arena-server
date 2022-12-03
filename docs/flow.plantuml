@@ -7,23 +7,23 @@ Server --> Client: SERVER_NEW_USER { id }
 
 == SCREEN INPUT NAME ==
 Client -> Server: CLIENT_JOIN_ROOM { username }
-Server --> Client: SERVER_ALLOW_JOIN_ROOM { room, listUser:[username] }
+Server --> Client: SERVER_ALLOW_JOIN_ROOM { room, listUsers:[username] }
 
 == SCREEN LOBBY ==
 
-Server --> Client: SERVER_START_ROUND { round, question, listRankedUser:[{ username, score}] }
+Server --> Client: SERVER_START_ROUND { round, question, listRankedUsers:[{ username, score}] }
 
 == ROUNG 1 ==
 
 Client -> Server: CLIENT_ANSWER { round, answer }
-Server --> Client: SERVER_END_ROUND { round, answer, listRankedUser:[{ username, score}] }
+Server --> Client: SERVER_END_ROUND { round, answer, listRankedUsers:[{ username, score}] }
 
-Server --> Client: SERVER_START_ROUND { round, question, listRankedUser:[{ username, score}] }
+Server --> Client: SERVER_START_ROUND { round, question, listRankedUsers:[{ username, score}] }
 
 
 == ROUNG 2 ==
 Client -> Server: CLIENT_ANSWER { round, answer }
-Server --> Client: SERVER_END_ROUND { round, answer, listRankedUser:[{ username, score}] }
+Server --> Client: SERVER_END_ROUND { round, answer, listRankedUsers:[{ username, score}] }
 
 
 

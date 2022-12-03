@@ -2,10 +2,11 @@ package racing.arena.server.feature.handler;
 
 import racing.arena.server.core.Providers;
 import racing.arena.server.feature.client.Client;
-import racing.arena.server.model.ClientJoinRoom;
-import racing.arena.server.model.MessageType;
-import racing.arena.server.model.PayloadWrapper;
+import racing.arena.server.feature.room.Room;
+import racing.arena.server.model.*;
 import racing.arena.server.core.utils.Logger;
+
+import java.io.IOException;
 
 public class ClientListener implements ClientHandler {
     @Override
@@ -26,24 +27,54 @@ public class ClientListener implements ClientHandler {
         PayloadWrapper payloadWrapper = new PayloadWrapper(rawData);
         String type = payloadWrapper.getType();
         if (type.equals(MessageType.CLIENT_JOIN_ROOM.name())) {
-            ClientJoinRoom clientJoinRoomData = new ClientJoinRoom();
-            // parse
-            clientJoinRoomData.initFromObject(payloadWrapper.getPayload());
-
-            // set username for client
-            client.setUsername(clientJoinRoomData.getUsername());
-
-            // add client to appropriate room
-            Providers.defaultRoom.addClient(client);
-
-            Logger.d("[SERVER] " + clientJoinRoomData.getUsername() + " is here!");
+            handleClientJoinRoom(client, payloadWrapper);
             return;
         }
 
         if (type.equals(MessageType.CLIENT_ANSWER.name())) {
-            //
+            handleClientAnswer(client, payloadWrapper);
             return;
         }
 
+    }
+
+    private void handleClientAnswer(Client client, PayloadWrapper payloadWrapper) {
+        ClientAnswer clientAnswer = new ClientAnswer();
+        clientAnswer.initFromObject(payloadWrapper.getPayload());
+
+    }
+
+    private void handleClientJoinRoom(Client client, PayloadWrapper payloadWrapper) {
+        ClientJoinRoom clientJoinRoomData = new ClientJoinRoom();
+        // parse
+        clientJoinRoomData.initFromObject(payloadWrapper.getPayload());
+        Logger.d("[SERVER] " + clientJoinRoomData.getUsername() + " is here!");
+
+        // set username for client
+        client.setUsername(clientJoinRoomData.getUsername());
+
+        // get room
+        Room currentRoom = Providers.defaultRoom;
+
+        // check existed
+        if (currentRoom.isExisted(client)) {
+            return;
+        }
+
+        // add client to appropriate room
+        currentRoom.addClient(client);
+
+        try {
+            client.send(
+                    new PayloadWrapper(
+                            new ServerAllowJoinRoom(
+                                    currentRoom.getId(),
+                                    currentRoom.getListUsernames()
+                            )
+                    ).toString()
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

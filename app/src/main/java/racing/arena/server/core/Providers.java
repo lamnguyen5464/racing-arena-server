@@ -17,7 +17,7 @@ public class Providers {
     public static ExecutorService singleExecutorService = Executors.newSingleThreadExecutor();
     public static ExecutorService clientExecutorService = Executors.newFixedThreadPool(Configs.MAXIMUM_USERS);
     public static ClientManager clientManager = new ClientManager(clientExecutorService);
-    public static Room defaultRoom = new Room(new ArrayList<>());
+    public static Room defaultRoom = new Room(new ArrayList<>(), singleExecutorService);
     public static SocketServer socketServer = new SocketServer(baseExecutorService, clientManager);
 
     public static ClientHandler clientListener = new ClientListener();

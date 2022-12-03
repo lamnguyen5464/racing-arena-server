@@ -3,7 +3,7 @@ package racing.arena.server.model;
 import racing.arena.server.core.utils.JSONSafeObject;
 
 public class ClientJoinRoom implements BaseMessage{
-    static private String FIELD_USER_NAME = "username";
+    static private final String FIELD_USER_NAME = "username";
 
     public String getUsername() {
         return username;

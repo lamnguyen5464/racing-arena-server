@@ -20,6 +20,7 @@ public class App {
         //test
         Providers.baseExecutorService.submit(() -> startClient(1));
         Providers.baseExecutorService.submit(() -> startClient(2));
+        Providers.baseExecutorService.submit(() -> startClient(3));
 
     }
 
@@ -41,13 +42,13 @@ public class App {
 
             String sentence_from_server = inFromServer.readLine();
 
+
+            ClientJoinRoom payload = new ClientJoinRoom("client-" + num);
+            outToServer.writeBytes(new PayloadWrapper(payload).toString());
+
             while (sentence_from_server != null) {
 
-                System.out.println("[CLIENT] FROM SERVER: " + sentence_from_server);
-
-
-                ClientJoinRoom payload = new ClientJoinRoom(sentence_to_server);
-                outToServer.writeBytes(new PayloadWrapper(payload).toString());
+                System.out.println("[CLIENT " + num + "] FROM SERVER: " + sentence_from_server);
                 sentence_from_server = inFromServer.readLine();
             }
 
