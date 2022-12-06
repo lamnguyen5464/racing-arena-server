@@ -11,19 +11,16 @@ Server --> Client: SERVER_ALLOW_JOIN_ROOM { room, listUsers:[username] }
 
 == SCREEN LOBBY ==
 
-Server --> Client: SERVER_START_ROUND { round, question, listRankedUsers:[{ username, score}] }
+Server --> Client: SERVER_START_ROUND { round, question, listRankedUsers:[{ username, score, id }] }
 
 == ROUNG 1 ==
-
 Client -> Server: CLIENT_ANSWER { round, answer }
-Server --> Client: SERVER_END_ROUND { round, answer, listRankedUsers:[{ username, score}] }
 
-Server --> Client: SERVER_START_ROUND { round, question, listRankedUsers:[{ username, score}] }
+Server --> Client: SERVER_START_ROUND { round, question, listRankedUsers:[{ username, score, id }] }
 
 
 == ROUNG 2 ==
 Client -> Server: CLIENT_ANSWER { round, answer }
-Server --> Client: SERVER_END_ROUND { round, answer, listRankedUsers:[{ username, score}] }
 
 
 

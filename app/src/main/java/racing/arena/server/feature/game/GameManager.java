@@ -91,17 +91,19 @@ public class GameManager {
             return;
         }
 
+        int delta = 7;
+
         if (!answer.equals(this.currentExpectedAnswer)) {
-            return;
+            delta *= -1;
         }
 
         for (ClientInRoom clientInRoom : clientsInRoom) {
             if (client.getId().equals(clientInRoom.getClient().getId())) {
-                clientInRoom.modifyScore(1);
+                clientInRoom.modifyScore(delta);
                 break;
             }
         }
         // re notify
-        this.notifyStartRound(currentRound, currentQuestion);
+        // this.notifyStartRound(currentRound, currentQuestion);
     }
 }

@@ -21,6 +21,7 @@ public class ClientInRoom {
 
     public int modifyScore(int delta) {
         score += delta;
+        if (score < 0) score = 0;
         return score;
     }
 
