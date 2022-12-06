@@ -42,6 +42,10 @@ public class ClientListener implements ClientHandler {
         ClientAnswer clientAnswer = new ClientAnswer();
         clientAnswer.initFromObject(payloadWrapper.getPayload());
 
+        Room currentRoom = Providers.defaultRoom;
+
+        currentRoom.submitAnswer(client, clientAnswer.getRound(), clientAnswer.getAnswer());
+
     }
 
     private void handleClientJoinRoom(Client client, PayloadWrapper payloadWrapper) {

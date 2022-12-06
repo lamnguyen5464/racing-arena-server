@@ -18,9 +18,9 @@ public class App {
         Providers.socketServer.start();
 
         //test
-        Providers.baseExecutorService.submit(() -> startClient(1));
-        Providers.baseExecutorService.submit(() -> startClient(2));
-        Providers.baseExecutorService.submit(() -> startClient(3));
+        // Providers.baseExecutorService.submit(() -> startClient(1));
+        // Providers.baseExecutorService.submit(() -> startClient(2));
+        // Providers.baseExecutorService.submit(() -> startClient(3));
 
     }
 
