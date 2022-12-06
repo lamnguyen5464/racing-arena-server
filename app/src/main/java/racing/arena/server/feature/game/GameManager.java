@@ -74,7 +74,7 @@ public class GameManager {
     }
 
     private void notifyStartRound(int round, String question) {
-        ServerStartRound serverStartRound = new ServerStartRound(question, round, clientsInRoom);
+        ServerStartRound serverStartRound = new ServerStartRound(question, this.currentExpectedAnswer, round, clientsInRoom);
         String payload = new PayloadWrapper(serverStartRound).toString();
         for (ClientInRoom clientInRoom : clientsInRoom) {
             try {

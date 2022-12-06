@@ -8,11 +8,13 @@ import java.util.List;
 
 public class ServerStartRound implements BaseMessage {
     private String question;
+    private String answer;
     private int round;
     private List<ClientInRoom> listRankedUsers;
 
-    public ServerStartRound(String question, int round, List<ClientInRoom> listRankedUsers) {
+    public ServerStartRound(String question, String answer, int round, List<ClientInRoom> listRankedUsers) {
         this.question = question;
+        this.answer = answer;
         this.round = round;
         this.listRankedUsers = listRankedUsers;
     }
@@ -32,6 +34,7 @@ public class ServerStartRound implements BaseMessage {
         JSONSafeObject object = new JSONSafeObject();
         object.put("round", this.round);
         object.put("question", question);
+        object.put("answer", answer);
 
         JSONArray jsonListRankedUsers = new JSONArray();
 
